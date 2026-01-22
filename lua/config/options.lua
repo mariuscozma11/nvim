@@ -28,4 +28,3 @@ opt.mouse = "a"
 
 opt.updatetime = 250
 opt.timeoutlen = 400
-

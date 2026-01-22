@@ -22,3 +22,11 @@ map("n", "<C-j>", "<C-w>j", { desc = "Down window" })
 map("n", "<C-k>", "<C-w>k", { desc = "Up window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Right window" })
 
+local diagnostics_visible = true
+
+map("n", "<leader>td", function()
+  diagnostics_visible = not diagnostics_visible
+  vim.diagnostic.config({
+    virtual_text = diagnostics_visible,
+  })
+end, { desc = "Toggle inline diagnostics" })
