@@ -10,7 +10,7 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     opts = {
       -- installs these via Mason (so you don't have to)
-      ensure_installed = { "gopls", "ts_ls", "lua_ls" },
+      ensure_installed = { "gopls", "ts_ls", "lua_ls", "clangd", "rust_analyzer" },
 
       -- optional: automatically call vim.lsp.enable() for installed servers
       automatic_enable = true,
@@ -71,6 +71,24 @@ return {
         },
       })
 
+      vim.lsp.config("clangd", {
+        capabilities = capabilities,
+        cmd = { "clangd", "--background-index" },
+        -- nice-to-haves:
+        -- "--clang-tidy", -- enable clang-tidy diagnostics (can be noisy)
+        -- "--completion-style=detailed",
+      })
+      vim.lsp.config("rust_analyzer", {
+        capabilities = capabilities,
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = { allFeatures = true },
+            checkOnSave = {
+              command = "clippy",
+            },
+          },
+        },
+      })
       -- If you did NOT set mason-lspconfig automatic_enable=true,
       -- enable explicitly:
       -- vim.lsp.enable({ "gopls", "ts_ls", "lua_ls" })
@@ -141,6 +159,9 @@ return {
           javascriptreact = { "prettierd", "prettier" },
           json = { "prettierd", "prettier" },
           lua = { "stylua" },
+          c = { "clang-format" },
+          cpp = { "clang-format" },
+          rust = { "rustfmt" },
         },
       })
 
