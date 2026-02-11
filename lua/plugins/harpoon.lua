@@ -7,6 +7,8 @@ return {
       local harpoon = require("harpoon")
       harpoon:setup()
 
+
+
       -- Add current file
       vim.keymap.set("n", "<leader>ha", function()
         harpoon:list():add()

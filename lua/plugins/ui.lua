@@ -27,5 +27,13 @@ return {
         options = { theme = "auto", globalstatus = true },
       })
     end,
-  }
+  },
+  {
+    "echasnovski/mini.tabline",
+    version = false,
+    config = function()
+      require("mini.tabline").setup()
+    end,
+
+  },
 }

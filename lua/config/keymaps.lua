@@ -30,3 +30,6 @@ map("n", "<leader>td", function()
     virtual_text = diagnostics_visible,
   })
 end, { desc = "Toggle inline diagnostics" })
+
+vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
