@@ -34,6 +34,22 @@ end, { desc = "Toggle inline diagnostics" })
 vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 
+-- Go to buffer controlls 1-9
+for i = 1, 9 do
+  vim.keymap.set("n", "<leader>" .. i, function()
+    local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+    if bufs[i] then
+      vim.api.nvim_set_current_buf(bufs[i].bufnr)
+    end
+  end, { desc = "Go to buffer " .. i })
+end
+-- Delete current buffer (without closing window)
+vim.keymap.set("n", "<leader>bd", function()
+  local current = vim.api.nvim_get_current_buf()
+  vim.cmd("bnext")
+  vim.cmd("bdelete " .. current)
+end, { desc = "Delete buffer" })
+
 -- Toggle terminal in a bottom split
 vim.keymap.set("n", "<leader>tt", function()
   vim.cmd("botright split | resize 15 | terminal")
