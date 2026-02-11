@@ -10,7 +10,7 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     opts = {
       -- installs these via Mason (so you don't have to)
-      ensure_installed = { "gopls", "ts_ls", "lua_ls", "clangd", "rust_analyzer" },
+      ensure_installed = { "gopls", "ts_ls", "lua_ls", "clangd", "rust_analyzer", "omnisharp" },
 
       -- optional: automatically call vim.lsp.enable() for installed servers
       automatic_enable = true,
@@ -162,6 +162,7 @@ return {
           c = { "clang-format" },
           cpp = { "clang-format" },
           rust = { "rustfmt" },
+          cs = { "csharpier" },
         },
       })
 
@@ -170,4 +171,5 @@ return {
       end, { desc = "Format" })
     end,
   },
+
 }

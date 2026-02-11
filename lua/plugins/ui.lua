@@ -1,7 +1,6 @@
 return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
-  -- Theme: pick ONE. TokyoNight is a safe default.
   {
     "catppuccin/nvim",
     priority = 1000,
@@ -28,5 +27,5 @@ return {
         options = { theme = "auto", globalstatus = true },
       })
     end,
-  },
+  }
 }

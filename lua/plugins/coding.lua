@@ -11,7 +11,6 @@ return {
         ensure_installed = {
           "go",
           "gomod",
-          "gosum",
           "gowork",
           "typescript",
           "tsx",
@@ -22,6 +21,7 @@ return {
           "markdown",
           "yaml",
           "bash",
+          "c_sharp",
         },
       })
     end,
