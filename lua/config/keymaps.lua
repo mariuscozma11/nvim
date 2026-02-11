@@ -33,3 +33,11 @@ end, { desc = "Toggle inline diagnostics" })
 
 vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
+
+-- Toggle terminal in a bottom split
+vim.keymap.set("n", "<leader>tt", function()
+  vim.cmd("botright split | resize 15 | terminal")
+end, { desc = "Open terminal (bottom split)" })
+
+-- Exit terminal mode quickly
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
