@@ -2,7 +2,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local opt = vim.opt
-
 opt.number = true
 opt.relativenumber = true
 opt.signcolumn = "yes"
@@ -28,4 +27,4 @@ opt.mouse = "a"
 
 opt.updatetime = 250
 opt.timeoutlen = 400
-vim.wo.fillchars = 'eob:·'
+vim.wo.fillchars = 'eob: '

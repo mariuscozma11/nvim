@@ -1,13 +1,21 @@
 return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
-
+  {
+    "bluz71/vim-moonfly-colors",
+    name = "moonfly",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("moonfly")
+    end,
+  },
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
-        options = { theme = "codedark", globalstatus = true },
+        options = { theme = "auto", globalstatus = true },
       })
     end,
   },
