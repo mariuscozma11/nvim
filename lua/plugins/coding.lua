@@ -5,9 +5,9 @@ return {
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.config").setup({
-        highlight = { enabled = true },
+        highlight = { enable = true },
         additional_vim_regex_highlighting = false,
-        indent = { enabled = true },
+        indent = { enable = true },
         ensure_installed = {
           "go",
           "gomod",
@@ -22,6 +22,12 @@ return {
           "yaml",
           "bash",
           "c_sharp",
+          "java",
+          "c",
+          "cpp",
+          "julia",
+          "python",
+          "zig",
         },
       })
     end,

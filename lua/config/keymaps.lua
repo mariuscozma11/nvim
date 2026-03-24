@@ -14,7 +14,7 @@ map("n", "<leader>h", "<cmd>nohlsearch<cr>", { desc = "No highlight" })
 -- Diagnostics
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
-map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Diagnostic float" })
+map("n", "<leader>y", vim.diagnostic.open_float, { desc = "Diagnostic float" })
 
 -- Window navigation
 map("n", "<C-h>", "<C-w>h", { desc = "Left window" })
@@ -23,6 +23,11 @@ map("n", "<C-k>", "<C-w>k", { desc = "Up window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Right window" })
 
 local diagnostics_visible = true
+
+-- Enable inline diagnostics on startup
+vim.diagnostic.config({
+  virtual_text = true,
+})
 
 map("n", "<leader>td", function()
   diagnostics_visible = not diagnostics_visible
