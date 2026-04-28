@@ -29,7 +29,14 @@ require("lazy").setup({
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
+  install = { colorscheme = { "habamax" }, missing = true },
   -- automatically check for plugin updates
   checker = { enabled = true },
+})
+
+-- Auto sync plugins on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.cmd("Lazy sync")
+  end,
 })

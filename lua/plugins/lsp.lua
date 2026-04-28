@@ -10,7 +10,7 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     opts = {
       -- installs these via Mason (so you don't have to)
-      ensure_installed = { "gopls", "ts_ls", "lua_ls", "clangd", "rust_analyzer", "omnisharp", "jdtls", "julials", "pyright", "zls" },
+      ensure_installed = { "gopls", "ts_ls", "lua_ls", "clangd", "rust_analyzer", "omnisharp", "jdtls", "julials", "pyright", "ruff", "zls", "asm_lsp" },
 
       -- optional: automatically call vim.lsp.enable() for installed servers
       automatic_enable = true,
@@ -22,6 +22,16 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "mason-org/mason-lspconfig.nvim" },
     config = function()
+      -- Disable hover for ruff (Pyright provides better documentation)
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client and client.name == "ruff" then
+            client.server_capabilities.hoverProvider = false
+          end
+        end,
+      })
+
       -- LSP keymaps when a server attaches
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
@@ -34,6 +44,7 @@ return {
           map("n", "K", vim.lsp.buf.hover, "Hover")
           map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
           map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
+          map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
         end,
       })
 
@@ -99,6 +110,27 @@ return {
 
       vim.lsp.config("pyright", {
         capabilities = capabilities,
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "standard",
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = "workspace",
+            },
+          },
+        },
+      })
+
+      vim.lsp.config("ruff", {
+        capabilities = capabilities,
+        init_options = {
+          settings = {
+            lint = {
+              ignore = { "E701", "E702", "E703" },
+            },
+          },
+        },
       })
 
       vim.lsp.config("zls", {
@@ -110,6 +142,10 @@ return {
             enable_inlay_hints = true,
           },
         },
+      })
+
+      vim.lsp.config("asm_lsp", {
+        capabilities = capabilities,
       })
     end,
   },
@@ -236,7 +272,7 @@ return {
           rust = { "rustfmt" },
           cs = { "csharpier" },
           java = { "google-java-format" },
-          python = { "black" },
+          python = { "ruff_fix" },
           zig = { "zigfmt" },
         },
       })

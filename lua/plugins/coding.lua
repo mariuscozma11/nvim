@@ -28,6 +28,8 @@ return {
           "julia",
           "python",
           "zig",
+          "asm",
+          "html-lsp",
         },
       })
     end,
